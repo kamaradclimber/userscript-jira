@@ -25,7 +25,7 @@
         var new_avatar = avatar_entity.childNodes[0].cloneNode(true);
         avatar_entity.appendChild(new_avatar);
         new_avatar.src = picture_url;
-        new_avatar.dataset['tooltip'] = `Peer: ${peer_name}`;
+        new_avatar.dataset.tooltip = `Peer: ${peer_name}`;
         new_avatar.alt = `Peer: ${peer_name}`;
     }
 
@@ -54,7 +54,7 @@
         ticket.querySelectorAll(labelSelector).forEach(function(extraField) {
             extractLabels(extraField).forEach(function(label) {
                 console.log(`Treating label ${label}`);
-                const capturingRegex = /pair-with-(?<peer>.+)/;
+                const capturingRegex = /(pair|peer)-with-(?<peer>.+)/;
                 const found = label.match(capturingRegex);
                 if (found) {
                     var peer_name = found.groups.peer
