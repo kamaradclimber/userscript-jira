@@ -15,6 +15,10 @@
 (function() {
     'use strict';
 
+    function markTicket(ticket_entity) {
+        ticket_entity.marked = true;
+    }
+
     function displayPeer(ticket_entity, peer_name) {
         var image_url = `https://jira.criteois.com/secure/useravatar?ownerId=${peer_name}`;
         displayPicture(ticket_entity, image_url, peer_name);
@@ -35,11 +39,17 @@
         var tickets = document.querySelectorAll(ticketLinkSelector);
         if (tickets && tickets.length > 0) {
             tickets.forEach(resolve);
-        } else {
             window.setTimeout(function () {
-                console.log("No ticket visible, relaunching timer");
+                // since jira refreshes page from time to time, we check from time to time if
+                // we need to work on it as well
+                // TODO(g.seux): detect "refresh" instead of relaunching a timer every 3s
                 onTicketAvailable(resolve);
+            }, 3000);
 
+        } else {
+            console.log("No ticket visible, relaunching timer in 100ms");
+            window.setTimeout(function () {
+                onTicketAvailable(resolve);
             }, 100);
         }
     }
@@ -50,6 +60,7 @@
     }
 
     onTicketAvailable(function (ticket) {
+        if (ticket.marked) return;
         var labelSelector = ".ghx-extra-field-content";
         ticket.querySelectorAll(labelSelector).forEach(function(extraField) {
             extractLabels(extraField).forEach(function(label) {
@@ -63,6 +74,7 @@
                 //TODO(g.seux): we could probably work with labels source:incident, source:interrupt and add emojis as well.
             })
         })
+        ticket.marked = true;
     });
 
 })();
