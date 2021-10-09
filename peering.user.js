@@ -6,6 +6,7 @@
 // @author       Grégoire Seux
 // @homepage     https://github.com/kamaradclimber/userscript-jira
 // @match        https://jira.criteois.com/secure/RapidBoard.jspa*
+// @license      Apache-2.0
 // @icon         https://www.google.com/s2/favicons?domain=criteois.com
 // @updateURL    https://openuserjs.org/meta/kamaradclimber/peering.meta.js
 // @grant        none
