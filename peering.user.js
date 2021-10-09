@@ -15,10 +15,6 @@
 (function() {
     'use strict';
 
-    function markTicket(ticket_entity) {
-        ticket_entity.marked = true;
-    }
-
     function displayPeer(ticket_entity, peer_name) {
         var image_url = `https://jira.criteois.com/secure/useravatar?ownerId=${peer_name}`;
         displayPicture(ticket_entity, image_url, peer_name);
@@ -74,6 +70,7 @@
                 //TODO(g.seux): we could probably work with labels source:incident, source:interrupt and add emojis as well.
             })
         })
+        // mark ticket to avoid editing again
         ticket.marked = true;
     });
 
