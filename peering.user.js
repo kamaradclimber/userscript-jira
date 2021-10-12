@@ -61,7 +61,7 @@
         ticket.querySelectorAll(labelSelector).forEach(function(extraField) {
             extractLabels(extraField).forEach(function(label) {
                 console.log(`Treating label ${label}`);
-                const capturingRegex = /(pair|peer)-with-(?<peer>.+)/;
+                const capturingRegex = /(pair-with|peer-with|featuring)-(?<peer>.+)/;
                 const found = label.match(capturingRegex);
                 if (found) {
                     var peer_name = found.groups.peer
