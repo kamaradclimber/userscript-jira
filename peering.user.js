@@ -30,7 +30,7 @@
     }
 
     var onTicketAvailable = function (resolve) {
-        var ticketLinkSelector = 'div[data-issue-key]';
+        var ticketLinkSelector = '.ghx-has-avatar';
         document.querySelectorAll(ticketLinkSelector)
         var tickets = document.querySelectorAll(ticketLinkSelector);
         if (tickets && tickets.length > 0) {
